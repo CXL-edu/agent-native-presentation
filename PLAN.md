@@ -37,6 +37,13 @@ The supplied reference is a custom web deck, not a native PPTX source: its HTML 
 5. Inspect representative screenshots and fix overflow/overlap or density issues.
 6. Update README with creation and extension workflows; clearly label next-stage capabilities.
 
+## Phase 2 extension: technical presentation primitives
+
+- Add a selectable, copyable `code` slide component with external `codeSrc`, language label, filename, line numbers, and optional highlighted lines.
+- Add an `animated-svg` slide component that injects local SVG, starts motion when its slide becomes active, and renders a static final state for print and reduced-motion modes.
+- Document engineering rules in `AGENTS.md`, system usage in `README.md`, deck-specific visual decisions in `STYLE.md`, and motion constraints in `MOTION.md`.
+- Keep code and animation as runtime/component capabilities; do not place behavior-specific logic in `deck.json` beyond declarative metadata.
+
 ## Acceptance criteria
 
 - `npm run dev` serves the example deck.

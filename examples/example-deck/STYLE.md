@@ -15,3 +15,7 @@
 13. Keep body copy readable on a projected 16:9 canvas.
 14. Vary slide composition according to the claim: statement, comparison, chart, pipeline, timeline, image, equation, and negative space are all valid.
 15. Avoid repetitive card grids, emoji overload, gradients, and dashboard-like density.
+16. Code blocks are readable source excerpts, not walls of implementation: show only the lines that support the slide claim.
+17. Code uses the shared mono token, selectable text, restrained line highlighting, and a visible filename/language label.
+18. Animation must reveal sequence or causality; it must not be required to understand the final claim.
+19. Every animated SVG has a complete static final state for print and reduced-motion modes.

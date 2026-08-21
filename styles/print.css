@@ -9,4 +9,9 @@
   .slide:last-child { page-break-after: auto; break-after: auto; }
   .slide.is-active, .slide { display: flex; }
   .screen-only, .nav-hint, #loading { display: none !important; }
+  .code-body { overflow: hidden; max-height: none; }
+  .code-copy { display: none !important; }
+  .animated-art .draw-path { animation: none !important; stroke-dashoffset: 0 !important; }
+  .animated-art .fade-in { animation: none !important; opacity: 1 !important; }
+  .animated-art .pulse-node { animation: none !important; }
 }

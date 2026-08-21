@@ -1,4 +1,4 @@
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, rm, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { arg, ensureDir, ROOT, runChrome, startServer } from './lib/browser.mjs';
 
@@ -7,6 +7,7 @@ const deckDir = join(ROOT, deckPath);
 const deck = JSON.parse(await readFile(join(deckDir, 'deck.json'), 'utf8'));
 const output = arg('out', join(ROOT, 'dist', `${deckPath.split('/').pop()}.pdf`));
 ensureDir(join(output, '..'));
+await rm(output, { force: true });
 const port = Number(arg('port', 4173));
 const server = await startServer(deckPath, port);
 try {

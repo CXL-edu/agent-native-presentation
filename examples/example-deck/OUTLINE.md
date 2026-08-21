@@ -26,8 +26,10 @@ A presentation should be a version-controlled, grounded, programmable visual doc
 05. Research should leave a trace — show handoffs.
 06. Start with a small engine — explain MVP layering.
 07. Every visual change should be reversible — make QA concrete.
-08. Quality compounds — offer a memorable heuristic.
-09. Version-controlled. Grounded. Programmable. — close with the thesis.
+08. The interaction belongs in the engine — show a reusable code primitive.
+09. Animation should reveal the loop — show purposeful SVG motion.
+10. Quality compounds — offer a memorable heuristic.
+11. Version-controlled. Grounded. Programmable. — close with the thesis.
 
 # Narrative Review
 

@@ -11,7 +11,7 @@ const sourceMatches = [...grounding.matchAll(/^##\s+(source-[\w-]+)/gm)].map((m)
 const claimMatches = [...grounding.matchAll(/^##\s+(claim-[\w-]+)/gm)].map((m) => m[1]);
 const sourceIds = new Set(sourceMatches);
 const claimIds = new Set(claimMatches);
-const supportedTypes = new Set(['title', 'section', 'statement', 'comparison', 'metric', 'quote', 'image', 'chart', 'pipeline', 'timeline', 'equation', 'diagram', 'closing', 'custom']);
+const supportedTypes = new Set(['title', 'section', 'statement', 'comparison', 'metric', 'quote', 'image', 'chart', 'pipeline', 'timeline', 'equation', 'diagram', 'code', 'animated-svg', 'closing', 'custom']);
 const errors = [], warnings = [];
 const usedClaims = new Set();
 const slideIds = new Set();
@@ -47,6 +47,11 @@ for (const [index, slide] of (deck.slides || []).entries()) {
       try { const data = JSON.parse(await readFile(full, 'utf8')); if (data.sourceId && !sourceIds.has(data.sourceId)) errors.push(`${slideName}: data source ${data.sourceId} is not defined`); if (!data.sourceId) warnings.push(`${slideName}: data file has no sourceId`); }
       catch (error) { errors.push(`${slideName}: invalid JSON data ${dataPath} (${error.message})`); }
     }
+  }
+  for (const assetKey of ['codeSrc', 'svgSrc']) {
+    if (!slide[assetKey]) continue;
+    const full = resolve(deckDir, slide[assetKey]);
+    if (!full.startsWith(deckDir) || !existsSync(full)) errors.push(`${slideName}: missing ${assetKey} file ${slide[assetKey]}`);
   }
   const factualFields = {...slide};
   delete factualFields.id; delete factualFields.type; delete factualFields.evidence; delete factualFields.claims; delete factualFields.data; delete factualFields.chart;

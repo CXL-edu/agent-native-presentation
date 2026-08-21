@@ -9,6 +9,8 @@ import { renderTimeline } from '../components/timeline.js';
 import { renderPipeline } from '../components/pipeline.js';
 import { renderChart } from '../components/chart.js';
 import { renderDiagram } from '../components/diagram.js';
+import { renderCodeBlock, installCodeCopy } from '../components/code-block.js';
+import { renderAnimatedSvg } from '../components/animated-svg.js';
 import { esc, evidencePills, paragraphs, formulaFallback } from '../components/helpers.js';
 import { createNavigation } from './navigation.js';
 import { installScaling } from './scaling.js';
@@ -21,9 +23,18 @@ async function loadJSON(path) {
   return response.json();
 }
 
+async function loadText(path) {
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`Could not load ${path}: HTTP ${response.status}`);
+  return response.text();
+}
+
 async function hydrateSlide(slide) {
-  if (!slide.data) return slide;
-  return { ...slide, _data: await loadJSON(slide.data) };
+  const hydrated = { ...slide };
+  if (slide.data) hydrated._data = await loadJSON(slide.data);
+  if (slide.codeSrc) hydrated._codeText = await loadText(slide.codeSrc);
+  if (slide.svgSrc) hydrated._svgText = await loadText(slide.svgSrc);
+  return hydrated;
 }
 
 function frameBody(slide) {
@@ -40,6 +51,8 @@ function frameBody(slide) {
     case 'timeline': return renderTimeline(slide);
     case 'equation': return `<div class="center"><div class="stack" style="align-items:center" data-layout><div class="equation">${formulaFallback(slide.formula || '')}</div><p class="body-copy" style="max-width:700px;text-align:center">${esc(slide.explanation || '')}</p></div></div>`;
     case 'diagram': return renderDiagram(slide);
+    case 'code': return renderCodeBlock(slide);
+    case 'animated-svg': return renderAnimatedSvg(slide);
     case 'closing': return `<div class="closing-rule"></div><h1 class="slide-title" data-layout>${esc(slide.title)}</h1><p class="slide-subtitle" data-layout>${esc(slide.subtitle || '')}</p><div class="closing-rule"></div>`;
     case 'custom': return slide.html || '';
     default: return `<div class="center"><p class="body-copy">Unknown slide type: ${esc(slide.type)}</p></div>`;
@@ -65,7 +78,9 @@ function runLayoutCheck() {
     const oldVisibility = slide.style.visibility;
     slide.style.display = 'flex';
     slide.style.visibility = 'hidden';
-    const slideReport = { slide: index + 1, overflow: [], smallText: [], textLength: slide.textContent.trim().length };
+    const codeCharacters = [...slide.querySelectorAll('.code-body')].reduce((total, element) => total + element.textContent.length, 0);
+    const textLength = Math.max(0, slide.textContent.trim().length - codeCharacters);
+    const slideReport = { slide: index + 1, overflow: [], smallText: [], textLength };
     if (slide.scrollHeight > slide.clientHeight + 2 || slide.scrollWidth > slide.clientWidth + 2) slideReport.overflow.push('slide scroll box exceeds its fixed stage');
     const layoutElements = [...slide.querySelectorAll('[data-layout]')];
     layoutElements.forEach((element) => {
@@ -105,6 +120,7 @@ async function boot() {
   document.title = deck.title || 'HTML Deck';
   const slides = await Promise.all((deck.slides || []).map(hydrateSlide));
   root.innerHTML = (await Promise.all(slides.map((slide, index) => renderSlide(slide, index, slides.length)))).join('');
+  installCodeCopy(root);
   const slideNodes = [...root.querySelectorAll('.slide')];
   const stage = document.querySelector('.stage');
   const viewport = document.querySelector('.deck-viewport');

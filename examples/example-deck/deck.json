@@ -87,6 +87,32 @@
     },
     {
       "id": "s-08",
+      "type": "code",
+      "kicker": "Code primitive",
+      "title": "The interaction belongs in the engine, not the slide",
+      "codeSrc": "code/selection-safe-navigation.js",
+      "language": "javascript",
+      "filename": "engine/navigation.js",
+      "highlight": ["4-10"],
+      "takeaway": "Keep slide content declarative; put behavior in reusable runtime code.",
+      "note": "The example is intentionally short. The full runtime also guards links, buttons, selection, and print mode.",
+      "evidence": ["source-001", "source-003"]
+    },
+    {
+      "id": "s-09",
+      "type": "animated-svg",
+      "kicker": "Motion primitive",
+      "title": "Animation should reveal the loop, not decorate it",
+      "svgSrc": "assets/agent-loop-animated.svg",
+      "motion": "draw",
+      "sideKicker": "A purposeful sequence",
+      "takeaway": "Use motion to reveal causality, then leave a complete static state.",
+      "note": "This loop draws the path first, then reveals the four stages. Print and reduced-motion modes show the final state.",
+      "motionNote": "Local SVG · reduced-motion safe · print safe",
+      "evidence": ["source-001", "source-003"]
+    },
+    {
+      "id": "s-10",
       "type": "equation",
       "kicker": "A design heuristic",
       "title": "Quality compounds when the system is explicit",
@@ -96,7 +122,7 @@
       "claims": ["claim-002"]
     },
     {
-      "id": "s-09",
+      "id": "s-11",
       "type": "closing",
       "title": "Version-controlled. Grounded. Programmable.",
       "subtitle": "The next deck should be another project that the agent can understand, change, and verify.",

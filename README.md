@@ -9,7 +9,9 @@ A small, deterministic presentation runtime for Coding Agents. The source of tru
 - Text selection and copy are preserved: drag-selection does not trigger click navigation; links and controls remain interactive.
 - Declarative `deck.json` for common slide types plus a custom HTML/SVG escape hatch.
 - Semantic theme tokens and a replaceable `themes/<name>/` theme.
-- Common components: title, section, statement, comparison, metric, quote, image, chart, pipeline, timeline, and closing.
+- Common components: title, section, statement, comparison, metric, quote, image, chart, pipeline, timeline, code block, animated SVG, and closing.
+- Selectable/copyable code slides with local source files, language labels, line numbers, and optional line highlights.
+- Local animated SVG slides with active-slide motion, reduced-motion fallback, and static print output.
 - Offline-safe lightweight equation fallback; no CDN is required by the example.
 - External chart data loaded from `data/*.json`.
 - Rule-based grounding checker with source/claim/evidence/data validation.
@@ -79,6 +81,46 @@ Supported types are registered in `engine/deck.js`. Custom slides can use:
 
 Custom HTML/SVG is trusted local source. Do not place unreviewed remote HTML into it.
 
+## Add a code slide
+
+Keep reusable code excerpts in a local file under the deck, then reference that file from `deck.json`:
+
+```json
+{
+  "id": "s-08",
+  "type": "code",
+  "title": "The interaction belongs in the engine",
+  "codeSrc": "code/navigation.js",
+  "language": "javascript",
+  "filename": "engine/navigation.js",
+  "highlight": ["14-18"],
+  "takeaway": "Show the implementation detail that supports the slide claim.",
+  "evidence": ["source-003"]
+}
+```
+
+Code remains selectable and copyable. The optional `Copy` control uses the browser clipboard when available. Do not use code slides as a substitute for documentation; show the smallest excerpt that explains the point.
+
+## Add an animated SVG slide
+
+Use a local SVG file and declarative motion metadata:
+
+```json
+{
+  "id": "s-09",
+  "type": "animated-svg",
+  "svgSrc": "assets/pipeline-animated.svg",
+  "motion": "draw",
+  "takeaway": "Use motion to reveal sequence or causality.",
+  "note": "The final state remains readable in print and reduced-motion modes.",
+  "evidence": ["source-001"]
+}
+```
+
+SVG paths using the draw animation should include `pathLength="1"` and `class="draw-path"`. Use `fade-in` for staged appearance and `pulse-node` for short emphasis. All animation rules live in `styles/motion.css`; deck-specific choices live in `MOTION.md`.
+
+Motion is disabled or resolved to the final state under `prefers-reduced-motion` and `@media print`.
+
 ## Add charts and diagrams
 
 Charts read external data:
@@ -103,6 +145,7 @@ Use `dataSource`/`sourceId` in data files when possible. The example renderer in
 - claim IDs resolve and are not orphaned;
 - source URL/path and key evidence are present;
 - referenced data files exist and their source IDs resolve;
+- referenced `codeSrc` and `svgSrc` files exist inside the deck;
 - numeric text on non-title slides has evidence.
 
 Run:

@@ -16,7 +16,7 @@ Retrieved: 2026-08-22
 
 Key evidence: The requested system is code-first; separates content, evidence, design, rendering, data, export, and visual QA; uses a fixed 1280×720 stage; supports declarative slide data; requires grounding, screenshots, PDF export, and agent iteration.
 
-Relevant slides: slide-02, slide-03, slide-04, slide-05, slide-06, slide-07, slide-08, slide-09
+Relevant slides: slide-02, slide-03, slide-04, slide-05, slide-06, slide-07, slide-08, slide-09, slide-10, slide-11
 
 ## source-002
 
@@ -42,9 +42,9 @@ URL / Path: /Users/jackchen/agent-native-presentation/engine, /Users/jackchen/ag
 
 Retrieved: 2026-08-22
 
-Key evidence: The implementation contains a fixed-stage engine, declarative renderer, component primitives, external chart data, grounding checks, layout checks, screenshot export, and PDF export scripts.
+Key evidence: The implementation contains a fixed-stage engine, declarative renderer, component primitives, external chart data, selectable/copyable code blocks, local animated SVG, reduced-motion and print fallbacks, grounding checks, layout checks, screenshot export, and PDF export scripts.
 
-Relevant slides: slide-06, slide-07
+Relevant slides: slide-06, slide-07, slide-08, slide-09
 
 # Claims
 
@@ -66,7 +66,7 @@ Evidence: source-001
 
 Raw value: A presentation-system design heuristic, not an empirical benchmark.
 
-Used in: slide-08
+Used in: slide-10
 
 ## claim-003
 
@@ -76,7 +76,7 @@ Evidence: source-001
 
 Raw value: Workflow specified by the user-provided requirements and implemented in this repository.
 
-Used in: slide-05, slide-09
+Used in: slide-05, slide-11
 
 # Fact Check
 
@@ -87,5 +87,7 @@ slide-04: PASS — source-001; ordinal values are sequence markers, not benchmar
 slide-05: PASS — source-001 / claim-003
 slide-06: PASS — source-001 / source-003
 slide-07: PASS — source-001 / source-003
-slide-08: PASS — source-001 / claim-002; explicitly labeled heuristic
-slide-09: PASS — source-001 / claim-003
+slide-08: PASS — source-001 / source-003; code is local source, not an external benchmark
+slide-09: PASS — source-001 / source-003; animation is explanatory and has a static final state
+slide-10: PASS — source-001 / claim-002; explicitly labeled heuristic
+slide-11: PASS — source-001 / claim-003
