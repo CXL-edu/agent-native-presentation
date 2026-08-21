@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent-native Presentation</title>
+  <style>
+    :root { --bg:#f6f8fb; --surface:#fff; --text:#102033; --muted:#4f6072; --line:#d7e0e8; --accent:#0a7ea4; --orange:#f18f3b; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { width:min(920px, calc(100vw - 48px)); padding:64px 0; }
+    .eyebrow { color:var(--accent); font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { max-width:820px; margin:18px 0 20px; font-size:clamp(42px, 8vw, 78px); line-height:.98; letter-spacing:-.055em; }
+    p { max-width:700px; color:var(--muted); font-size:21px; line-height:1.45; }
+    .rule { width:72px; height:5px; margin:34px 0; background:var(--orange); }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; }
+    a { display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border:1px solid var(--line); border-radius:10px; color:var(--text); background:var(--surface); font-weight:700; text-decoration:none; box-shadow:0 8px 20px rgba(16,32,51,.06); }
+    a.primary { border-color:var(--accent); color:#fff; background:var(--accent); }
+    .meta { display:flex; flex-wrap:wrap; gap:9px; margin-top:44px; color:var(--muted); font:13px ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .meta span { padding:7px 10px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.65); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Code-first · grounded · reusable</div>
+    <h1>A presentation the agent can keep editing.</h1>
+    <p>Agent-native Presentation is a deterministic HTML/SVG presentation system for Coding Agents. The source of truth is version-controlled code, structured data, evidence, and design tokens—not a binary PPTX file.</p>
+    <div class="rule"></div>
+    <div class="actions">
+      <a class="primary" href="examples/example-deck/">Open the example deck →</a>
+      <a href="https://github.com/CXL-edu/agent-native-presentation/blob/main/README.md">Read the documentation</a>
+      <a href="https://github.com/CXL-edu/agent-native-presentation">View source on GitHub</a>
+    </div>
+    <div class="meta"><span>1280 × 720 stage</span><span>grounding checker</span><span>SVG charts</span><span>PDF export</span><span>visual QA</span></div>
+  </main>
+</body>
+</html>
