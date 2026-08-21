@@ -1,0 +1,11 @@
+{
+  "sourceId": "source-001",
+  "note": "Ordinal stage values show the intended workflow sequence, not a performance benchmark.",
+  "values": [
+    {"label": "Research", "value": 1},
+    {"label": "Ground", "value": 2},
+    {"label": "Story", "value": 3},
+    {"label": "Render", "value": 4},
+    {"label": "Verify", "value": 5}
+  ]
+}

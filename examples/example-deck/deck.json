@@ -1,0 +1,107 @@
+{
+  "title": "Agent-native Presentation",
+  "canvas": {"width": 1280, "height": 720},
+  "theme": "default",
+  "slides": [
+    {
+      "id": "s-01",
+      "type": "title",
+      "brand": "Agent-native Deck System",
+      "eyebrow": "A reusable presentation runtime",
+      "kicker": "Code-first / grounded / visual",
+      "title": "A presentation the agent can keep editing",
+      "subtitle": "Treat the deck as a version-controlled visual document—not a finished binary file.",
+      "meta": "Example deck · MVP",
+      "footer": "HTML · SVG · DATA · QA"
+    },
+    {
+      "id": "s-02",
+      "type": "statement",
+      "kicker": "The shift",
+      "title": "The editable unit is the system",
+      "statement": "A deck becomes more useful when its source, evidence, design, and rendering can evolve together.",
+      "body": ["The agent can change a claim, re-render the slide, and inspect the result without leaving the project."] ,
+      "evidence": ["source-001"],
+      "claims": ["claim-001"]
+    },
+    {
+      "id": "s-03",
+      "type": "comparison",
+      "kicker": "Architecture choice",
+      "title": "Keep PowerPoint at the edge, not at the core",
+      "left": {"label": "PPT-first", "title": "Binary as source of truth", "items": ["Harder to diff and review", "Manual updates hide data lineage", "Visual QA is mostly human"]},
+      "right": {"label": "Code-first", "title": "HTML as source of truth", "items": ["Git can show every change", "Charts render from source data", "Agents can test and iterate"]},
+      "evidence": ["source-001"],
+      "claims": ["claim-001"]
+    },
+    {
+      "id": "s-04",
+      "type": "chart",
+      "kicker": "A deterministic loop",
+      "title": "The workflow makes each transformation explicit",
+      "data": "data/process.json",
+      "chart": {"kind": "line", "label": "Workflow stages"},
+      "takeaway": "A deck is a pipeline from source material to a checked visual artifact.",
+      "note": "Ordinal stage values show sequence, not a performance benchmark.",
+      "evidence": ["source-001"]
+    },
+    {
+      "id": "s-05",
+      "type": "pipeline",
+      "kicker": "Agent workflow",
+      "title": "Research should leave a trace at every handoff",
+      "steps": [
+        {"title": "Research", "copy": "Collect files, repos, papers, data, and user context."},
+        {"title": "Ground", "copy": "Turn observations into claims with source IDs."},
+        {"title": "Compose", "copy": "Shape one primary message per slide."},
+        {"title": "Verify", "copy": "Run layout, screenshot, grounding, and PDF checks."}
+      ],
+      "evidence": ["source-001"],
+      "claims": ["claim-003"]
+    },
+    {
+      "id": "s-06",
+      "type": "timeline",
+      "kicker": "MVP build path",
+      "title": "Start with a small engine, then earn complexity",
+      "items": [
+        {"year": "Contract", "title": "Content + evidence", "copy": "Make the authoring boundary legible to the next agent."},
+        {"year": "Runtime", "title": "Stage + navigation", "copy": "Keep the design coordinate system fixed and predictable."},
+        {"year": "Visual", "title": "Components + SVG", "copy": "Reuse primitives without forcing every slide into one layout."},
+        {"year": "QA", "title": "Checks + export", "copy": "Make the artifact testable before calling it finished."}
+      ],
+      "evidence": ["source-001", "source-003"]
+    },
+    {
+      "id": "s-07",
+      "type": "image",
+      "kicker": "Iteration posture",
+      "title": "Every visual change should be reversible",
+      "src": "assets/agent-loop.svg",
+      "alt": "A loop from source to slide to QA and back to source",
+      "caption": "A local SVG asset keeps the idea inspectable and offline-safe.",
+      "sideKicker": "The agent loop",
+      "sideTitle": "Render, inspect, fix",
+      "body": ["The screenshot is not the source. It is evidence that the source rendered as intended."] ,
+      "evidence": ["source-001", "source-003"]
+    },
+    {
+      "id": "s-08",
+      "type": "equation",
+      "kicker": "A design heuristic",
+      "title": "Quality compounds when the system is explicit",
+      "formula": "Quality = Grounding \\times Determinism \\times Iteration",
+      "explanation": "This is a design heuristic: remove any one factor and the deck becomes harder to trust or maintain.",
+      "evidence": ["source-001"],
+      "claims": ["claim-002"]
+    },
+    {
+      "id": "s-09",
+      "type": "closing",
+      "title": "Version-controlled. Grounded. Programmable.",
+      "subtitle": "The next deck should be another project that the agent can understand, change, and verify.",
+      "evidence": ["source-001"],
+      "claims": ["claim-003"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "agent-native-presentation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A grounded, deterministic, agent-maintainable HTML presentation system.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs --deck examples/example-deck",
+    "screenshot": "node scripts/screenshot.mjs --deck examples/example-deck",
+    "export-pdf": "node scripts/export-pdf.mjs --deck examples/example-deck",
+    "layout-check": "node scripts/layout-check.mjs --deck examples/example-deck",
+    "visual-check": "node scripts/visual-check.mjs --deck examples/example-deck",
+    "grounding-check": "node scripts/grounding-check.mjs --deck examples/example-deck",
+    "check": "npm run grounding-check && npm run layout-check && npm run visual-check"
+  }
+}

@@ -1,0 +1,2 @@
+import { esc, paragraphs } from './helpers.js';
+export function renderImage(slide) { return `<div class="image-layout"><div class="image-frame" data-layout><img src="${esc(slide.src)}" alt="${esc(slide.alt || '')}"><div class="caption" style="margin-top:10px">${esc(slide.caption || '')}</div></div><div class="stack" data-layout><div class="eyebrow kicker">${esc(slide.sideKicker || 'Visual primitive')}</div><h2 class="panel-title">${esc(slide.sideTitle || '')}</h2>${paragraphs(slide.body || [])}</div></div>`; }

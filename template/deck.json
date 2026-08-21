@@ -1,0 +1,8 @@
+{
+  "title": "New Deck",
+  "canvas": {"width": 1280, "height": 720},
+  "theme": "default",
+  "slides": [
+    {"id":"s-01","type":"title","title":"A conclusion-driven title","subtitle":"A short promise to the audience."}
+  ]
+}

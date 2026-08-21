@@ -1,0 +1,2 @@
+import { esc } from './helpers.js';
+export function renderTimeline(slide) { return `<div class="timeline">${(slide.items || []).map((item) => `<article class="timeline-item" data-layout><span class="timeline-dot"></span><div class="timeline-year">${esc(item.year)}</div><div class="timeline-title">${esc(item.title)}</div><div class="timeline-copy">${esc(item.copy)}</div></article>`).join('')}</div>`; }

@@ -1,0 +1,8 @@
+.chart-axis { stroke: var(--line); stroke-width: 1; }
+.chart-grid { stroke: var(--grid); stroke-width: 1; }
+.chart-bar { fill: var(--accent-primary); }
+.chart-bar:nth-of-type(2n) { fill: var(--accent-secondary); }
+.chart-line { fill: none; stroke: var(--accent-primary); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.chart-point { fill: var(--surface); stroke: var(--accent-secondary); stroke-width: 3; }
+.chart-label { fill: var(--text-secondary); font: 13px var(--font-body); }
+.chart-value { fill: var(--text-primary); font: 700 13px var(--font-mono); }

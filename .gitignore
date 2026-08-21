@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.swp
+*.swo
+.env
+.env.*
+!.env.example
+
+# Generated artifacts can be regenerated with npm scripts.
+# Keep the example PDF/screenshots in the repository as reference outputs.
