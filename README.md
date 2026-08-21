@@ -5,7 +5,7 @@ A small, deterministic presentation runtime for Coding Agents. The source of tru
 ## What exists in this MVP
 
 - Fixed 1280×720 stage with deterministic transform scaling.
-- Hash/history navigation: Arrow keys, Space, PageUp/PageDown, Home/End, `F`, and `#1` URLs.
+- Hash/history navigation: Arrow keys, Space, PageUp/PageDown, Home/End, `F`, `#1` URLs, and stage click navigation (left half previous, right half next).
 - Declarative `deck.json` for common slide types plus a custom HTML/SVG escape hatch.
 - Semantic theme tokens and a replaceable `themes/<name>/` theme.
 - Common components: title, section, statement, comparison, metric, quote, image, chart, pipeline, timeline, and closing.

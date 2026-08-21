@@ -1,4 +1,4 @@
-export function createNavigation({ count, onChange }) {
+export function createNavigation({ count, onChange, stage }) {
   let current = 0;
   function clamp(index) { return Math.max(0, Math.min(count - 1, index)); }
   function readHash() { const n = Number.parseInt(location.hash.slice(1), 10); return Number.isFinite(n) ? clamp(n - 1) : 0; }
@@ -7,6 +7,16 @@ export function createNavigation({ count, onChange }) {
     if (push) history.pushState({ slide: next + 1 }, '', `#${next + 1}`);
     current = next;
     onChange(current);
+  }
+  function isInteractiveTarget(target) {
+    return target.closest('a,button,input,textarea,select,option,[data-no-nav],[contenteditable="true"]');
+  }
+  function handleStageClick(event) {
+    if (event.button !== undefined && event.button !== 0) return;
+    if (isInteractiveTarget(event.target)) return;
+    const rect = stage.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    go(current + (x < rect.width / 2 ? -1 : 1));
   }
   function handleKey(event) {
     if (['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)) return;
@@ -20,5 +30,6 @@ export function createNavigation({ count, onChange }) {
   window.addEventListener('keydown', handleKey);
   window.addEventListener('hashchange', () => go(readHash(), false));
   window.addEventListener('popstate', () => go(readHash(), false));
+  stage?.addEventListener('click', handleStageClick);
   return { start() { go(readHash(), false); }, go, get current() { return current; } };
 }
