@@ -107,8 +107,9 @@ async function boot() {
   root.innerHTML = (await Promise.all(slides.map((slide, index) => renderSlide(slide, index, slides.length)))).join('');
   const slideNodes = [...root.querySelectorAll('.slide')];
   const stage = document.querySelector('.stage');
+  const viewport = document.querySelector('.deck-viewport');
   installScaling(stage, deck.canvas?.width || 1280, deck.canvas?.height || 720);
-  const navigation = createNavigation({ count: slideNodes.length, onChange: (index) => setActiveSlide(slideNodes, index), stage });
+  const navigation = createNavigation({ count: slideNodes.length, onChange: (index) => setActiveSlide(slideNodes, index), viewport, stage });
   navigation.start();
   const totalNode = document.querySelector('[data-total-slides]');
   if (totalNode) totalNode.textContent = String(slideNodes.length).padStart(2, '0');

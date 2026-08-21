@@ -1,5 +1,9 @@
-export function createNavigation({ count, onChange, stage }) {
+export function createNavigation({ count, onChange, viewport, stage }) {
   let current = 0;
+  let pointerStart = null;
+  let suppressNextClick = false;
+  const clickSurface = viewport || stage;
+
   function clamp(index) { return Math.max(0, Math.min(count - 1, index)); }
   function readHash() { const n = Number.parseInt(location.hash.slice(1), 10); return Number.isFinite(n) ? clamp(n - 1) : 0; }
   function go(index, push = true) {
@@ -9,12 +13,34 @@ export function createNavigation({ count, onChange, stage }) {
     onChange(current);
   }
   function isInteractiveTarget(target) {
-    return target.closest('a,button,input,textarea,select,option,[data-no-nav],[contenteditable="true"]');
+    return target instanceof Element && target.closest('a,button,input,textarea,select,option,[data-no-nav],[contenteditable="true"]');
   }
-  function handleStageClick(event) {
+  function hasTextSelection() {
+    const selection = window.getSelection?.();
+    return Boolean(selection && !selection.isCollapsed && selection.toString());
+  }
+  function handlePointerDown(event) {
     if (event.button !== undefined && event.button !== 0) return;
     if (isInteractiveTarget(event.target)) return;
-    const rect = stage.getBoundingClientRect();
+    pointerStart = { x: event.clientX, y: event.clientY };
+  }
+  function handlePointerUp(event) {
+    if (!pointerStart) return;
+    const distance = Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y);
+    if (distance > 6 || hasTextSelection()) {
+      suppressNextClick = true;
+      window.setTimeout(() => { suppressNextClick = false; }, 500);
+    }
+    pointerStart = null;
+  }
+  function handlePointerCancel() {
+    pointerStart = null;
+    suppressNextClick = false;
+  }
+  function handleSurfaceClick(event) {
+    if (suppressNextClick) { suppressNextClick = false; return; }
+    if (isInteractiveTarget(event.target) || hasTextSelection()) return;
+    const rect = clickSurface.getBoundingClientRect();
     const x = event.clientX - rect.left;
     go(current + (x < rect.width / 2 ? -1 : 1));
   }
@@ -30,6 +56,9 @@ export function createNavigation({ count, onChange, stage }) {
   window.addEventListener('keydown', handleKey);
   window.addEventListener('hashchange', () => go(readHash(), false));
   window.addEventListener('popstate', () => go(readHash(), false));
-  stage?.addEventListener('click', handleStageClick);
+  clickSurface?.addEventListener('pointerdown', handlePointerDown);
+  clickSurface?.addEventListener('pointerup', handlePointerUp);
+  clickSurface?.addEventListener('pointercancel', handlePointerCancel);
+  clickSurface?.addEventListener('click', handleSurfaceClick);
   return { start() { go(readHash(), false); }, go, get current() { return current; } };
 }
