@@ -57,17 +57,22 @@ export function runChrome(args, options = {}) {
     const dumpDom = args.includes('--dump-dom');
     let poll;
     let timer;
+    let reportTimer;
     const finish = (error = null) => {
       if (settled) return;
       settled = true;
       clearInterval(poll);
       clearTimeout(timer);
+      clearTimeout(reportTimer);
       try { process.kill(-child.pid, 'SIGTERM'); } catch (_) { child.kill('SIGTERM'); }
       if (error) reject(error); else resolvePromise({ stdout, stderr });
     };
     poll = setInterval(() => { if (target && existsSync(target)) finish(); }, 100);
-    timer = setTimeout(() => dumpDom ? finish() : finish(new Error(`Chrome timed out\n${stderr}\n${stdout}`)), options.timeout || (dumpDom ? 5000 : 15000));
-    child.stdout?.on('data', (chunk) => { stdout += chunk.toString(); });
+    timer = setTimeout(() => dumpDom ? finish(new Error(`Chrome timed out before returning a DOM report\n${stderr}\n${stdout.slice(-4000)}`)) : finish(new Error(`Chrome timed out\n${stderr}\n${stdout}`)), options.timeout || (dumpDom ? 15000 : 15000));
+    child.stdout?.on('data', (chunk) => {
+      stdout += chunk.toString();
+      if (dumpDom && !reportTimer && (stdout.includes('<title>LAYOUT_REPORT:') || stdout.includes('<div id="layout-report"'))) reportTimer = setTimeout(() => finish(), 200);
+    });
     child.stderr?.on('data', (chunk) => { stderr += chunk.toString(); });
     child.on('error', (error) => finish(error));
     child.on('close', (code) => { if (!settled && code !== 0) finish(new Error(`Chrome exited ${code}\n${stderr}\n${stdout}`)); else if (!settled && !target) setTimeout(() => finish(), 250); });

@@ -9,7 +9,7 @@ A small, deterministic presentation runtime for Coding Agents. The source of tru
 - Text selection and copy are preserved: drag-selection does not trigger click navigation; links and controls remain interactive.
 - Declarative `deck.json` for common slide types plus a custom HTML/SVG escape hatch.
 - Semantic theme tokens and a replaceable `themes/<name>/` theme.
-- Common components: title, section, statement, comparison, metric, quote, image, chart, pipeline, timeline, code block, animated SVG, and closing.
+- Common components: title, section, statement, comparison, metric, quote, image, image comparison, chart, pipeline, timeline, code block, animated SVG, and closing.
 - Selectable/copyable code slides with local source files, language labels, line numbers, and optional line highlights.
 - Local animated SVG slides with active-slide motion, reduced-motion fallback, and static print output.
 - Offline-safe lightweight equation fallback; no CDN is required by the example.
@@ -47,9 +47,10 @@ The repository has no mandatory runtime dependency. Screenshot and PDF scripts l
 3. Write `OUTLINE.md` before coding slides.
 4. Research into `GROUNDING.md`; record source IDs and raw evidence.
 5. Draft concise slide copy in `CONTENT.md`.
-6. Put declarative slides in `deck.json`; keep chart data in `data/`.
-7. Use one primary message per slide and attach `evidence` IDs to factual slides.
-8. Run the checks below before delivery.
+6. Review `ASSETS.md` before adding images and `MOTION.md` before adding animation.
+7. Put declarative slides in `deck.json`; keep chart data in `data/` and reusable code in `code/`.
+8. Use one primary message per slide and attach `evidence` IDs to factual slides.
+9. Run the checks below before delivery.
 
 ## Add a slide
 
@@ -121,6 +122,26 @@ SVG paths using the draw animation should include `pathLength="1"` and `class="d
 
 Motion is disabled or resolved to the final state under `prefers-reduced-motion` and `@media print`.
 
+## Add images
+
+Use local assets and declare how they should be framed:
+
+```json
+{
+  "id": "s-07",
+  "type": "image",
+  "src": "assets/product-screen.png",
+  "fit": "contain",
+  "position": "center",
+  "alt": "Product screen showing the retrieval workflow",
+  "caption": "Keep the complete UI visible so labels remain legible.",
+  "source": "assets/product-screen.png",
+  "evidence": ["source-002"]
+}
+```
+
+Use `image-comparison` for before/after or two-state visual evidence. Image rules live in `ASSETS.md`; the checker rejects missing local files and remote HTTP image URLs.
+
 ## Add charts and diagrams
 
 Charts read external data:
@@ -145,7 +166,8 @@ Use `dataSource`/`sourceId` in data files when possible. The example renderer in
 - claim IDs resolve and are not orphaned;
 - source URL/path and key evidence are present;
 - referenced data files exist and their source IDs resolve;
-- referenced `codeSrc` and `svgSrc` files exist inside the deck;
+- referenced `src`, `codeSrc`, and `svgSrc` files exist inside the deck;
+- remote HTTP image URLs are rejected for offline decks;
 - numeric text on non-title slides has evidence.
 
 Run:

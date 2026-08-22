@@ -39,7 +39,8 @@ The supplied reference is a custom web deck, not a native PPTX source: its HTML 
 
 ## Phase 2 extension: technical presentation primitives
 
-- Add a selectable, copyable `code` slide component with external `codeSrc`, language label, filename, line numbers, and optional highlighted lines.
+- Add a selectable, copyable `code` slide component with external `codeSrc`, language label, filename, and optional highlighted lines.
+- Add a deterministic local image system with `contain`/`cover`, object position, source/alt metadata, and image comparison layouts.
 - Add an `animated-svg` slide component that injects local SVG, starts motion when its slide becomes active, and renders a static final state for print and reduced-motion modes.
 - Document engineering rules in `AGENTS.md`, system usage in `README.md`, deck-specific visual decisions in `STYLE.md`, and motion constraints in `MOTION.md`.
 - Keep code and animation as runtime/component capabilities; do not place behavior-specific logic in `deck.json` beyond declarative metadata.

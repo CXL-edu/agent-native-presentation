@@ -11,7 +11,7 @@ const sourceMatches = [...grounding.matchAll(/^##\s+(source-[\w-]+)/gm)].map((m)
 const claimMatches = [...grounding.matchAll(/^##\s+(claim-[\w-]+)/gm)].map((m) => m[1]);
 const sourceIds = new Set(sourceMatches);
 const claimIds = new Set(claimMatches);
-const supportedTypes = new Set(['title', 'section', 'statement', 'comparison', 'metric', 'quote', 'image', 'chart', 'pipeline', 'timeline', 'equation', 'diagram', 'code', 'animated-svg', 'closing', 'custom']);
+const supportedTypes = new Set(['title', 'section', 'statement', 'comparison', 'metric', 'quote', 'image', 'chart', 'pipeline', 'timeline', 'equation', 'diagram', 'code', 'animated-svg', 'image-comparison', 'closing', 'custom']);
 const errors = [], warnings = [];
 const usedClaims = new Set();
 const slideIds = new Set();
@@ -48,10 +48,18 @@ for (const [index, slide] of (deck.slides || []).entries()) {
       catch (error) { errors.push(`${slideName}: invalid JSON data ${dataPath} (${error.message})`); }
     }
   }
-  for (const assetKey of ['codeSrc', 'svgSrc']) {
-    if (!slide[assetKey]) continue;
-    const full = resolve(deckDir, slide[assetKey]);
-    if (!full.startsWith(deckDir) || !existsSync(full)) errors.push(`${slideName}: missing ${assetKey} file ${slide[assetKey]}`);
+  const assets = [];
+  if (slide.src) assets.push({ key: 'src', path: slide.src });
+  if (slide.image?.src) assets.push({ key: 'image.src', path: slide.image.src });
+  for (const [imageIndex, image] of (slide.images || []).entries()) if (image.src) assets.push({ key: `images[${imageIndex}].src`, path: image.src });
+  if (slide.codeSrc) assets.push({ key: 'codeSrc', path: slide.codeSrc });
+  if (slide.svgSrc) assets.push({ key: 'svgSrc', path: slide.svgSrc });
+  for (const asset of assets) {
+    if (/^https?:\/\//i.test(asset.path)) errors.push(`${slideName}: ${asset.key} must be local for offline decks (${asset.path})`);
+    else {
+      const full = resolve(deckDir, asset.path);
+      if (!full.startsWith(deckDir) || !existsSync(full)) errors.push(`${slideName}: missing ${asset.key} file ${asset.path}`);
+    }
   }
   const factualFields = {...slide};
   delete factualFields.id; delete factualFields.type; delete factualFields.evidence; delete factualFields.claims; delete factualFields.data; delete factualFields.chart;

@@ -5,6 +5,7 @@ import { renderComparison } from '../components/comparison.js';
 import { renderMetricCards } from '../components/metric-card.js';
 import { renderQuote } from '../components/quote.js';
 import { renderImage } from '../components/image.js';
+import { renderImageComparison } from '../components/image-comparison.js';
 import { renderTimeline } from '../components/timeline.js';
 import { renderPipeline } from '../components/pipeline.js';
 import { renderChart } from '../components/chart.js';
@@ -46,6 +47,7 @@ function frameBody(slide) {
     case 'metric': return renderMetricCards(slide);
     case 'quote': return renderQuote(slide);
     case 'image': return renderImage(slide);
+    case 'image-comparison': return renderImageComparison(slide);
     case 'chart': return renderChart(slide);
     case 'pipeline': return renderPipeline(slide);
     case 'timeline': return renderTimeline(slide);
