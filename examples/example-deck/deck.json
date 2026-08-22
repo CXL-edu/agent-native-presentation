@@ -116,6 +116,21 @@
     },
     {
       "id": "s-10",
+      "type": "animated-svg",
+      "kicker": "One-shot workflow",
+      "title": "The agent turns messy inputs into a checked visual artifact",
+      "svgSrc": "assets/workflow-pipeline-animated.svg",
+      "motion": "draw",
+      "motionOnce": true,
+      "sideKicker": "A single pass",
+      "takeaway": "The animation ends where iteration begins.",
+      "note": "Each stage appears once: source, grounding, story, render, then QA. Returning to this slide shows the final state without replaying.",
+      "motionNote": "Plays once on first entry · static after completion",
+      "evidence": ["source-001", "source-003"],
+      "claims": ["claim-003"]
+    },
+    {
+      "id": "s-11",
       "type": "equation",
       "kicker": "A design heuristic",
       "title": "Quality compounds when the system is explicit",
@@ -125,7 +140,7 @@
       "claims": ["claim-002"]
     },
     {
-      "id": "s-11",
+      "id": "s-12",
       "type": "closing",
       "title": "Version-controlled. Grounded. Programmable.",
       "subtitle": "The next deck should be another project that the agent can understand, change, and verify.",

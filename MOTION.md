@@ -8,6 +8,7 @@ Motion is an explanatory layer, not decoration. Use it to reveal sequence, causa
 - Put animation behavior in `components/animated-svg.js` and `styles/motion.css`; keep `deck.json` declarative.
 - An animated slide must have a complete static final state. Print and reduced-motion modes must show that state.
 - Motion starts when the slide becomes active, not when the whole deck first loads.
+- If a motion is marked as a one-shot slide, the engine records that it has played during the current page session and shows the final state on revisit.
 - Keep one dominant motion idea per slide.
 - Use `pathLength="1"` on SVG paths that use the draw animation.
 - Prefer short, purposeful motion. The default draw duration is under two seconds; do not loop indefinitely unless the loop itself communicates a system feedback cycle.
@@ -21,6 +22,7 @@ Motion is an explanatory layer, not decoration. Use it to reveal sequence, causa
   "type": "animated-svg",
   "svgSrc": "assets/agent-loop-animated.svg",
   "motion": "draw",
+  "motionOnce": true,
   "takeaway": "The loop makes iteration visible.",
   "note": "The final state remains readable in PDF and reduced-motion mode.",
   "evidence": ["source-001"]

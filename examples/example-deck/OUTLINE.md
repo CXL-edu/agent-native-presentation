@@ -28,8 +28,9 @@ A presentation should be a version-controlled, grounded, programmable visual doc
 07. Every visual change should be reversible — make QA concrete.
 08. The interaction belongs in the engine — show a reusable code primitive.
 09. Animation should reveal the loop — show purposeful SVG motion.
-10. Quality compounds — offer a memorable heuristic.
-11. Version-controlled. Grounded. Programmable. — close with the thesis.
+10. The agent turns messy inputs into a checked visual artifact — play the one-shot workflow.
+11. Quality compounds — offer a memorable heuristic.
+12. Version-controlled. Grounded. Programmable. — close with the thesis.
 
 # Narrative Review
 

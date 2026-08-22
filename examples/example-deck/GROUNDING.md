@@ -16,7 +16,7 @@ Retrieved: 2026-08-22
 
 Key evidence: The requested system is code-first; separates content, evidence, design, rendering, data, export, and visual QA; uses a fixed 1280×720 stage; supports declarative slide data; requires grounding, screenshots, PDF export, and agent iteration.
 
-Relevant slides: slide-02, slide-03, slide-04, slide-05, slide-06, slide-07, slide-08, slide-09, slide-10, slide-11
+Relevant slides: slide-02, slide-03, slide-04, slide-05, slide-06, slide-07, slide-08, slide-09, slide-10, slide-11, slide-12
 
 ## source-002
 
@@ -44,7 +44,7 @@ Retrieved: 2026-08-22
 
 Key evidence: The implementation contains a fixed-stage engine, declarative renderer, component primitives, external chart data, selectable/copyable code blocks, local animated SVG, reduced-motion and print fallbacks, grounding checks, layout checks, screenshot export, and PDF export scripts.
 
-Relevant slides: slide-06, slide-07, slide-08, slide-09
+Relevant slides: slide-06, slide-07, slide-08, slide-09, slide-10
 
 # Claims
 
@@ -76,7 +76,7 @@ Evidence: source-001
 
 Raw value: Workflow specified by the user-provided requirements and implemented in this repository.
 
-Used in: slide-05, slide-11
+Used in: slide-05, slide-10, slide-12
 
 # Fact Check
 
@@ -89,5 +89,6 @@ slide-06: PASS — source-001 / source-003
 slide-07: PASS — source-001 / source-003
 slide-08: PASS — source-001 / source-003; code is local source, not an external benchmark
 slide-09: PASS — source-001 / source-003; animation is explanatory and has a static final state
-slide-10: PASS — source-001 / claim-002; explicitly labeled heuristic
-slide-11: PASS — source-001 / claim-003
+slide-10: PASS — source-001 / source-003 / claim-003; one-shot workflow animation, static after completion
+slide-11: PASS — source-001 / claim-002; explicitly labeled heuristic
+slide-12: PASS — source-001 / claim-003

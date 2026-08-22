@@ -15,7 +15,7 @@ import { renderAnimatedSvg } from '../components/animated-svg.js';
 import { esc, evidencePills, paragraphs, formulaFallback } from '../components/helpers.js';
 import { createNavigation } from './navigation.js';
 import { installScaling } from './scaling.js';
-import { setActiveSlide } from './transitions.js';
+import { setActiveSlide, installMotionLifecycle } from './transitions.js';
 import { installPrintMode } from './print.js';
 
 async function loadJSON(path) {
@@ -67,7 +67,8 @@ async function renderSlide(slide, index, total) {
   const header = special ? '' : `<header class="slide-header"><div class="eyebrow kicker">${esc(slide.kicker || '')}</div><h1 class="slide-title" data-layout>${esc(slide.title || '')}</h1>${slide.subtitle ? `<div class="slide-subtitle" data-layout>${esc(slide.subtitle)}</div>` : ''}</header>`;
   const bodyClass = special ? '' : 'slide-content';
   const footer = `<footer class="slide-footer"><div class="evidence-line">${evidencePills(slide)}</div><span class="slide-number">${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}</span></footer>`;
-  return `<article class="slide ${typeClass} ${special ? `${slide.type}-slide` : ''}" data-slide-id="${esc(slide.id || `slide-${index + 1}`)}" data-slide-index="${index + 1}" aria-hidden="true">${header}<main class="${bodyClass}">${await frameBody(slide)}</main>${footer}</article>`;
+  const motionAttr = slide.type === 'animated-svg' ? ` data-motion-once="${slide.motionOnce === true ? 'true' : 'false'}"` : '';
+  return `<article class="slide ${typeClass} ${special ? `${slide.type}-slide` : ''}" data-slide-id="${esc(slide.id || `slide-${index + 1}`)}" data-slide-index="${index + 1}"${motionAttr} aria-hidden="true">${header}<main class="${bodyClass}">${await frameBody(slide)}</main>${footer}</article>`;
 }
 
 function runLayoutCheck() {
@@ -123,6 +124,7 @@ async function boot() {
   const slides = await Promise.all((deck.slides || []).map(hydrateSlide));
   root.innerHTML = (await Promise.all(slides.map((slide, index) => renderSlide(slide, index, slides.length)))).join('');
   installCodeCopy(root);
+  installMotionLifecycle(root);
   const slideNodes = [...root.querySelectorAll('.slide')];
   const stage = document.querySelector('.stage');
   const viewport = document.querySelector('.deck-viewport');

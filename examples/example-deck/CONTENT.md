@@ -14,6 +14,7 @@ A presentation should be a version-controlled, grounded, programmable visual doc
 - Every visual change should be reversible.
 - The interaction belongs in the engine, not the slide.
 - Animation should reveal the loop, not decorate it.
+- The agent turns messy inputs into a checked visual artifact.
 - Quality compounds when the system is explicit.
 - Version-controlled. Grounded. Programmable.
 
