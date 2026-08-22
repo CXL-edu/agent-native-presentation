@@ -157,6 +157,15 @@ Charts read external data:
 
 Use `dataSource`/`sourceId` in data files when possible. The example renderer includes bar, line, and Pareto-style cumulative views. Pipelines and timelines use declarative nodes; exact technical diagrams may use custom SVG.
 
+Use `data-node`, `data-box`, `data-edge`, `data-edge-shaft`, and `data-edge-head` for ported SVG diagrams. `engine/svg-layout.js` computes endpoints, target gaps, solid arrowhead geometry, and port-layout diagnostics. See `DIAGRAMS.md` for the contract.
+
+## Asset and diagram contracts
+
+- `ASSETS.md` controls local images, crop, fit, alt text, source labels, and offline checks.
+- `DIAGRAMS.md` controls node bounds, ports, edges, arrowheads, routing, and collision rules.
+- `MOTION.md` controls timing, one-shot playback, reduced-motion, print, and arrow animation.
+
+
 ## Grounding workflow
 
 `GROUNDING.md` maps `source-*` records to `claim-*` records and slides. The checker verifies:

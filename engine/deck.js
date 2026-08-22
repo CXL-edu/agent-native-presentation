@@ -17,6 +17,7 @@ import { createNavigation } from './navigation.js';
 import { installScaling } from './scaling.js';
 import { setActiveSlide } from './transitions.js';
 import { installPrintMode } from './print.js';
+import { layoutPortedSvgs } from './svg-layout.js';
 
 async function loadJSON(path) {
   const response = await fetch(path);
@@ -75,6 +76,8 @@ function runLayoutCheck() {
   const stage = document.querySelector('.stage');
   const slides = [...document.querySelectorAll('.slide')];
   const report = { status: 'PASS', slides: [], warnings: [], failures: [] };
+  const portReports = window.__svgPortLayoutReport || [];
+  portReports.filter((item) => item.status === 'FAIL').forEach((item) => report.failures.push(...item.failures.map((failure) => `SVG port layout: ${failure}`)));
   const stageRect = stage.getBoundingClientRect();
   slides.forEach((slide, index) => {
     const oldDisplay = slide.style.display;
@@ -123,6 +126,7 @@ async function boot() {
   document.title = deck.title || 'HTML Deck';
   const slides = await Promise.all((deck.slides || []).map(hydrateSlide));
   root.innerHTML = (await Promise.all(slides.map((slide, index) => renderSlide(slide, index, slides.length)))).join('');
+  layoutPortedSvgs(root);
   installCodeCopy(root);
   const slideNodes = [...root.querySelectorAll('.slide')];
   const stage = document.querySelector('.stage');

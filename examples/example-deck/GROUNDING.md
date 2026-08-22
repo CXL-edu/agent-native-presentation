@@ -42,7 +42,7 @@ URL / Path: /Users/jackchen/agent-native-presentation/engine, /Users/jackchen/ag
 
 Retrieved: 2026-08-22
 
-Key evidence: The implementation contains a fixed-stage engine, declarative renderer, component primitives, external chart data, selectable/copyable code blocks, local animated SVG, reduced-motion and print fallbacks, grounding checks, layout checks, screenshot export, and PDF export scripts.
+Key evidence: The implementation contains a fixed-stage engine, declarative renderer, component primitives, external chart data, selectable/copyable code blocks, local animated SVG, explicit node/port/edge geometry with solid arrowheads, reduced-motion and print fallbacks, grounding checks, layout checks, screenshot export, and PDF export scripts.
 
 Relevant slides: slide-06, slide-07, slide-08, slide-09, slide-10
 
