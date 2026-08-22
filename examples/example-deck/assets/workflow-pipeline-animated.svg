@@ -1,24 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 300" role="img" aria-labelledby="title desc">
   <title id="title">One-shot presentation workflow</title>
-  <desc id="desc">Five stages transform source material into a grounded, rendered, inspected visual artifact.</desc>
+  <desc id="desc">Five stages transform source material into a grounded, rendered, inspected visual artifact. Each stage appears after its incoming connector.</desc>
   <rect width="980" height="300" rx="18" fill="#edf2f7"/>
   <g fill="none" stroke="#0a7ea4" stroke-width="4" stroke-linecap="round">
-    <path class="draw-path" pathLength="1" d="M164 150H208"/>
-    <path class="draw-path" pathLength="1" d="M356 150H400"/>
-    <path class="draw-path" pathLength="1" d="M548 150H592"/>
-    <path class="draw-path" pathLength="1" d="M740 150H784"/>
-  </g>
-  <g fill="#0a7ea4">
-    <path class="draw-path" pathLength="1" d="M200 142l12 8-12 8" fill="none"/>
-    <path class="draw-path" pathLength="1" d="M392 142l12 8-12 8" fill="none"/>
-    <path class="draw-path" pathLength="1" d="M584 142l12 8-12 8" fill="none"/>
-    <path class="draw-path" pathLength="1" d="M776 142l12 8-12 8" fill="none"/>
+    <g class="draw-segment" style="--motion-delay:.55s;--motion-duration:.55s"><path class="draw-path" pathLength="1" d="M164 150H208"/><path class="draw-path" pathLength="1" d="M200 142l12 8-12 8"/></g>
+    <g class="draw-segment" style="--motion-delay:1.75s;--motion-duration:.55s"><path class="draw-path" pathLength="1" d="M356 150H400"/><path class="draw-path" pathLength="1" d="M392 142l12 8-12 8"/></g>
+    <g class="draw-segment" style="--motion-delay:2.95s;--motion-duration:.55s"><path class="draw-path" pathLength="1" d="M548 150H592"/><path class="draw-path" pathLength="1" d="M584 142l12 8-12 8"/></g>
+    <g class="draw-segment" style="--motion-delay:4.15s;--motion-duration:.55s"><path class="draw-path" pathLength="1" d="M740 150H784"/><path class="draw-path" pathLength="1" d="M776 142l12 8-12 8"/></g>
   </g>
   <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" text-anchor="middle">
-    <g class="fade-in" transform="translate(20 98)"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle class="pulse-node" cx="28" cy="30" r="9" fill="#f18f3b"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Source</text><text x="72" y="66" font-size="13" fill="#4f6072">files · data</text><text x="72" y="84" font-size="13" fill="#4f6072">repos · papers</text></g>
-    <g class="fade-in" transform="translate(212 98)" style="--motion-delay:.2s"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle class="pulse-node" cx="28" cy="30" r="9" fill="#0a7ea4"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Ground</text><text x="72" y="66" font-size="13" fill="#4f6072">claims</text><text x="72" y="84" font-size="13" fill="#4f6072">sources</text></g>
-    <g class="fade-in" transform="translate(404 98)" style="--motion-delay:.4s"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle class="pulse-node" cx="28" cy="30" r="9" fill="#25855a"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Story</text><text x="72" y="66" font-size="13" fill="#4f6072">thesis</text><text x="72" y="84" font-size="13" fill="#4f6072">outline</text></g>
-    <g class="fade-in" transform="translate(596 98)" style="--motion-delay:.6s"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle class="pulse-node" cx="28" cy="30" r="9" fill="#b97916"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Render</text><text x="72" y="66" font-size="13" fill="#4f6072">HTML</text><text x="72" y="84" font-size="13" fill="#4f6072">SVG · PDF</text></g>
-    <g class="fade-in" transform="translate(788 98)" style="--motion-delay:.8s"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle class="pulse-node" cx="28" cy="30" r="9" fill="#b64b54"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">QA</text><text x="72" y="66" font-size="13" fill="#4f6072">layout</text><text x="72" y="84" font-size="13" fill="#4f6072">grounding</text></g>
+    <g class="fade-in" style="--motion-delay:0s;--motion-duration:.5s" transform="translate(20 98)"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle cx="28" cy="30" r="9" fill="#f18f3b"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Source</text><text x="72" y="66" font-size="13" fill="#4f6072">files · data</text><text x="72" y="84" font-size="13" fill="#4f6072">repos · papers</text></g>
+    <g class="fade-in" style="--motion-delay:1.2s;--motion-duration:.5s" transform="translate(212 98)"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle cx="28" cy="30" r="9" fill="#0a7ea4"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Ground</text><text x="72" y="66" font-size="13" fill="#4f6072">claims</text><text x="72" y="84" font-size="13" fill="#4f6072">sources</text></g>
+    <g class="fade-in" style="--motion-delay:2.4s;--motion-duration:.5s" transform="translate(404 98)"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle cx="28" cy="30" r="9" fill="#25855a"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Story</text><text x="72" y="66" font-size="13" fill="#4f6072">thesis</text><text x="72" y="84" font-size="13" fill="#4f6072">outline</text></g>
+    <g class="fade-in" style="--motion-delay:3.6s;--motion-duration:.5s" transform="translate(596 98)"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle cx="28" cy="30" r="9" fill="#b97916"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">Render</text><text x="72" y="66" font-size="13" fill="#4f6072">HTML</text><text x="72" y="84" font-size="13" fill="#4f6072">SVG · PDF</text></g>
+    <g class="fade-in" style="--motion-delay:4.8s;--motion-duration:.5s" transform="translate(788 98)"><rect width="144" height="104" rx="14" fill="#fff" stroke="#d7e0e8"/><circle cx="28" cy="30" r="9" fill="#b64b54"/><text x="86" y="37" font-size="18" font-weight="700" fill="#102033">QA</text><text x="72" y="66" font-size="13" fill="#4f6072">layout</text><text x="72" y="84" font-size="13" fill="#4f6072">grounding</text></g>
   </g>
 </svg>

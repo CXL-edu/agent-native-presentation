@@ -12,7 +12,7 @@ const server = await startServer(deckPath, port);
 try {
   for (let i = 1; i <= deck.slides.length; i += 1) {
     const file = join(outputDir, `${String(i).padStart(3, '0')}.png`);
-    await runChrome([`--window-size=1280,720`, `--screenshot=${file}`, '--virtual-time-budget=1200', `${server.url}?dev=0#${i}`]);
+    await runChrome([`--window-size=1280,720`, `--screenshot=${file}`, '--virtual-time-budget=7000', `${server.url}?dev=0#${i}`]);
     console.log(`screenshot ${i}/${deck.slides.length}: ${file}`);
   }
 } finally { server.child.kill('SIGTERM'); }

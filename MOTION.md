@@ -11,6 +11,8 @@ Motion is an explanatory layer, not decoration. Use it to reveal sequence, causa
 - If a motion is marked as a one-shot slide, the engine records that it has played during the current page session and shows the final state on revisit.
 - Keep one dominant motion idea per slide.
 - Use `pathLength="1"` on SVG paths that use the draw animation.
+- For a pipeline, stagger node and edge delays as `node → edge → node → edge`; do not give every path the same delay.
+- Use per-element `--motion-delay` and `--motion-duration` variables in the SVG to make the sequence explicit and diffable.
 - Prefer short, purposeful motion. The default draw duration is under two seconds; do not loop indefinitely unless the loop itself communicates a system feedback cycle.
 - Do not use motion to hide missing content, compensate for weak hierarchy, or force attention away from the slide claim.
 
