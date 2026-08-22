@@ -15,7 +15,7 @@ import { renderAnimatedSvg } from '../components/animated-svg.js';
 import { esc, evidencePills, paragraphs, formulaFallback } from '../components/helpers.js';
 import { createNavigation } from './navigation.js';
 import { installScaling } from './scaling.js';
-import { setActiveSlide, installMotionLifecycle } from './transitions.js';
+import { setActiveSlide } from './transitions.js';
 import { installPrintMode } from './print.js';
 
 async function loadJSON(path) {
@@ -124,7 +124,6 @@ async function boot() {
   const slides = await Promise.all((deck.slides || []).map(hydrateSlide));
   root.innerHTML = (await Promise.all(slides.map((slide, index) => renderSlide(slide, index, slides.length)))).join('');
   installCodeCopy(root);
-  installMotionLifecycle(root);
   const slideNodes = [...root.querySelectorAll('.slide')];
   const stage = document.querySelector('.stage');
   const viewport = document.querySelector('.deck-viewport');

@@ -3,7 +3,7 @@
   <desc id="desc">A sequence from source material through grounding, rendering, and inspection.</desc>
   <rect width="760" height="390" rx="18" fill="#edf2f7"/>
   <path class="draw-path" pathLength="1" d="M190 78 C330 4 560 18 640 132 C706 226 618 334 462 342 C288 350 138 280 126 174" fill="none" stroke="#0a7ea4" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 10"/>
-  <path class="draw-path" pathLength="1" d="M126 174 l-22 4 15 17" fill="none" stroke="#f18f3b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="arrow-head fade-in" style="--motion-delay:2.45s;--motion-duration:.2s" d="M126 174L101 178L115 199Z" fill="#f18f3b"/>
   <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" text-anchor="middle">
     <g class="fade-in" transform="translate(92 128)"><rect width="156" height="78" rx="14" fill="#fff" stroke="#d7e0e8"/><circle class="pulse-node" cx="26" cy="28" r="9" fill="#f18f3b"/><text x="90" y="34" font-size="18" font-weight="700" fill="#102033">Source</text><text x="78" y="57" font-size="13" fill="#4f6072">files · repos · data</text></g>
     <g class="fade-in" transform="translate(266 44)" style="--motion-delay:.2s"><rect width="176" height="78" rx="14" fill="#fff" stroke="#d7e0e8"/><circle class="pulse-node" cx="26" cy="28" r="9" fill="#0a7ea4"/><text x="102" y="34" font-size="18" font-weight="700" fill="#102033">Grounding</text><text x="88" y="57" font-size="13" fill="#4f6072">claims · sources</text></g>

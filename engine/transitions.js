@@ -44,19 +44,3 @@ export function setActiveSlide(slides, index) {
     slide.setAttribute('aria-hidden', String(!active));
   });
 }
-
-export function installMotionLifecycle(root) {
-  root.querySelectorAll('.slide').forEach((slide) => {
-    const art = slide.querySelector('[data-motion-art]');
-    if (!art) return;
-    const paths = [...art.querySelectorAll('.draw-path')];
-    const primary = paths.at(-1) || art.querySelector('.fade-in');
-    primary?.addEventListener('animationend', (event) => {
-      if (slide.dataset.motionOnce !== 'true') return;
-      if (event.animationName === 'draw-path' || !art.querySelector('.draw-path')) {
-        slide.classList.remove('motion-enter');
-        slide.classList.add('motion-complete');
-      }
-    }, { once: true });
-  });
-}

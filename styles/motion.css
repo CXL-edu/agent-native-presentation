@@ -4,6 +4,7 @@
 .animated-svg-aside { display: flex; flex-direction: column; gap: 16px; }
 .motion-note { color: var(--text-muted); font: 12px/1.4 var(--font-mono); }
 .animated-art .draw-path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.animated-art .arrow-head { stroke: none; }
 .animated-art .fade-in { opacity: 0; }
 .animated-art .pulse-node { transform-box: fill-box; transform-origin: center; }
 .slide.motion-enter.is-active .animated-art .draw-path { animation: draw-path var(--motion-duration, 1.8s) var(--motion-delay, 0s) ease-out forwards; }
