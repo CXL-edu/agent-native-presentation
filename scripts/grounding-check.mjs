@@ -55,9 +55,10 @@ for (const [index, slide] of (deck.slides || []).entries()) {
   if (slide.codeSrc) assets.push({ key: 'codeSrc', path: slide.codeSrc });
   if (slide.svgSrc) assets.push({ key: 'svgSrc', path: slide.svgSrc });
   for (const asset of assets) {
+    const cleanPath = asset.path.split('?')[0];
     if (/^https?:\/\//i.test(asset.path)) errors.push(`${slideName}: ${asset.key} must be local for offline decks (${asset.path})`);
     else {
-      const full = resolve(deckDir, asset.path);
+      const full = resolve(deckDir, cleanPath);
       if (!full.startsWith(deckDir) || !existsSync(full)) errors.push(`${slideName}: missing ${asset.key} file ${asset.path}`);
     }
   }
